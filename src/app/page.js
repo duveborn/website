@@ -83,7 +83,7 @@ export default function Home() {
             LinkedIn
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Contact me on LinkedIn for collaborations and other ideas.
+            Contact me for collaborations and other ideas.
           </p>
         </a>
 
@@ -97,7 +97,7 @@ export default function Home() {
             Github
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Check out my public activity on Github.
+            Check out my public repositories and organizations.
           </p>
         </a>
 
@@ -111,7 +111,7 @@ export default function Home() {
             Instagram
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Enjoy my casual photo vlogging on Instagram.
+            Enjoy my casual photo vlogging..
           </p>
         </a>
 
@@ -125,7 +125,7 @@ export default function Home() {
             X
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            Message me on Twitter for collaborations or other ideas.
+            Message me for collaborations or other ideas.
           </p>
         </a>
       </div>
