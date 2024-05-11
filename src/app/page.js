@@ -3,16 +3,36 @@ import Image from "next/image";
 export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center justify-between sm:p-24">
-      <div className="relative flex place-items-center">
-        <Image
+      <div className="my-8 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-2 lg:text-left">
+      <Image
           src="/avatar.png"
           alt="Oskar Duveborn"
           width={578}
           height={672}
           priority
         />
+        <div>
+          <h1 className={`sm:mb-3 m-8 text-2xl font-semibold text-left`}>DJ gigs</h1>
+          <ul className="ml-14 list-disc text-left text-orange-300">
+            <li>12th April - Synth After Work, Sjätte Tunnan, Stockholm</li>
+            <li>23rd April - Gästabudvar, Industrigatan 2, Stockholm</li>
+            <li>27th April - Syntax Error, H62, Stockholm</li>
+            <li>8th May - SEC-T Spring Pub, Magasinet, Stockholm</li>
+            <li>25th May - Syntax Error, H62, Stockholm</li>
+            <li>30th May - Security Fest, Elite Park Avenue Hotel, Göteborg</li>
+            <li>28th June - Subkultfestivalen, Vänersborg</li>
+            <li>27th July - Syntax Error Off-The-Grid, Stockholm</li>
+            <li>15th August - Parkbion, Tantolunden, Stockholm</li>
+            <li>31st August - Syntax Error, H62, Stockholm</li>
+            <li>12th September - SEC-T Conference, Münchenbryggeriet, Stockholm</li>
+            <li>28th September - Syntax Error, H62, Stockholm</li>
+            <li>10th October - Moderskeppet, Birka Gotland, Stockholm</li>
+            <li>26th October - Syntax Error Halloween, Stockholm</li>
+            <li>30th November - Syntax Error, H62, Stockholm</li>
+            <li>...</li>
+          </ul>
+        </div>
       </div>
-
 
       <div className="my-8 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
         <a
