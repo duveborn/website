@@ -29,7 +29,6 @@ export default function Home() {
             <li>10th October - Moderskeppet, Birka Gotland, Stockholm</li>
             <li>26th October - Syntax Error Halloween, Stockholm</li>
             <li>30th November - Syntax Error, H62, Stockholm</li>
-            <li>...</li>
           </ul>
         </div>
       </div>
@@ -45,7 +44,7 @@ export default function Home() {
             Syntax Error
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            I&apos;m an organizer, the treasurer and a DJ at the hon-profit nightclub in Sweden promoting video game music and a friendly environment.
+            I&apos;m an organizer, the treasurer, a promoter and a DJ at the hon-profit nightclub in Sweden promoting video game music and a friendly environment. I also designed and developed the current website.
           </p>
         </a>
 
@@ -59,7 +58,7 @@ export default function Home() {
             SEC-T
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            I&apos;m the Club Manager for the large cyber security conference SEC-T in Stockholm.
+            I&apos;m the Club Manager and promoter for the large cyber security conference SEC-T in Stockholm where I get to organize slightly bigger concerts and cyberpunk-themed entertainment each year.
           </p>
         </a>
 
@@ -73,7 +72,7 @@ export default function Home() {
             Måndagsklubben
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            I&apos;m a founder and an organizer of the weekly tech afterwork in Stockholm called Måndagsklubben.
+            I&apos;m a founder and an organizer of the weekly tech afterwork in Stockholm called Måndagsklubben which has been around for 12+ years on basically every Monday.
           </p>
         </a>
 
@@ -87,7 +86,7 @@ export default function Home() {
             Fuzzycats
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            I&apos;m the DJ in the DJ+VJ duo Fuzzycats who believes Big Beat is ripe for a comeback.
+            I&apos;m the DJ in the DJ+VJ duo Fuzzycats who believes Big Beat is ripe for a comeback. We're playing that 90:s big beat and break beat music that you instantly love and is particularily fitting for hacking and computer technology events.
           </p>
         </a>
       </div>
