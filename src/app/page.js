@@ -86,7 +86,7 @@ export default function Home() {
             Fuzzycats
           </h2>
           <p className={`m-0 max-w-[30ch] text-sm opacity-50 text-balance`}>
-            I&apos;m the DJ in the DJ+VJ duo Fuzzycats who believes Big Beat is ripe for a comeback. We're playing that 90:s big beat and break beat music that you instantly love and is particularily fitting for hacking and computer technology events.
+            I&apos;m the DJ in the DJ+VJ duo Fuzzycats who believes Big Beat is ripe for a comeback. We&apos;re playing that 90:s big beat and break beat music that you instantly love and is particularily fitting for hacking and computer technology events.
           </p>
         </a>
       </div>
