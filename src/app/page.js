@@ -12,8 +12,7 @@ export default function Home() {
           priority
         />
         <div>
-          <h1 className={`sm:mb-3 m-8 text-2xl font-semibold text-left`}>DJ gigs 2025</h1>
-          <h2>Planned so far, book me? ^^</h2>
+          <h1 className={`sm:mb-3 m-8 text-2xl font-semibold text-left`}>DJ gigs planned so far 2025</h1>
           <ul className="ml-14 list-disc text-left text-orange-300">
             <li>25th January - Syntax Error Season Premiere - 8-bit Special, H62, Stockholm</li>
             <li>1st March - Syntax Error - Board Game Special, H62, Stockholm</li>
