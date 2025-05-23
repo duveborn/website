@@ -12,23 +12,20 @@ export default function Home() {
           priority
         />
         <div>
-          <h1 className={`sm:mb-3 m-8 text-2xl font-semibold text-left`}>DJ gigs</h1>
+          <h1 className={`sm:mb-3 m-8 text-2xl font-semibold text-left`}>DJ gigs 2025 (planned so far)</h1>
           <ul className="ml-14 list-disc text-left text-orange-300">
-            <li>12th April - Synth After Work, Sjätte Tunnan, Stockholm</li>
-            <li>23rd April - Gästabudvar, Industrigatan 2, Stockholm</li>
-            <li>27th April - Syntax Error, H62, Stockholm</li>
-            <li>8th May - SEC-T Spring Pub, Magasinet, Stockholm</li>
-            <li>25th May - Syntax Error, H62, Stockholm</li>
-            <li>30th May - Security Fest, Elite Park Avenue Hotel, Göteborg</li>
-            <li>28th June - Subkultfestivalen, Vänersborg</li>
-            <li>27th July - Syntax Error Off-The-Grid, Stockholm</li>
-            <li>15th August - Parkbion, Tantolunden, Stockholm</li>
-            <li>31st August - Syntax Error, H62, Stockholm</li>
+            <li>31st May - Syntax Error Season Finale, H62, Stockholm</li>
+            <li>5th June - Security Fest, Elite Park Avenue Hotel, Göteborg</li>
+            <li>11th June - Detectify Summer Party, Josefinas Djurgården, Stockholm</li>
+            <li>26-28th June - Subkultfestivalen, Vänersborg</li>
+            <li>26th July - Syntax Error Off-The-Grid, Stockholm</li>
+            <li>30st August - Syntax Error Season Premiere, H62, Stockholm</li>
             <li>12th September - SEC-T Conference, Münchenbryggeriet, Stockholm</li>
-            <li>28th September - Syntax Error, H62, Stockholm</li>
-            <li>10th October - Moderskeppet, Birka Gotland, Stockholm</li>
-            <li>26th October - Syntax Error Halloween, Stockholm</li>
-            <li>30th November - Syntax Error, H62, Stockholm</li>
+            <li>27th September - Syntax Error, H62, Stockholm</li>
+            <li>16th October - Moderskeppet, Birka Gotland, Stockholm</li>
+            <li>25th October - Syntax Error Halloween, Stockholm</li>
+            <li>29th November - Syntax Error, H62, Stockholm</li>
+            <li>13th Deember - Syntax Error Xmas Special, H62, Stockholm</li>
           </ul>
         </div>
       </div>
