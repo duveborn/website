@@ -12,20 +12,27 @@ export default function Home() {
           priority
         />
         <div>
-          <h1 className={`sm:mb-3 m-8 text-2xl font-semibold text-left`}>DJ gigs 2025 (planned so far)</h1>
+          <h1 className={`sm:mb-3 m-8 text-2xl font-semibold text-left`}>DJ gigs 2025</h1>
+          <h2>Planned so far, book me? ^^</h2>
           <ul className="ml-14 list-disc text-left text-orange-300">
-            <li>31st May - Syntax Error Season Finale, H62, Stockholm</li>
+            <li>25th January - Syntax Error Season Premiere - 8-bit Special, H62, Stockholm</li>
+            <li>1st March - Syntax Error - Board Game Special, H62, Stockholm</li>
+            <li>29th March - Syntax Error - Demoscene Special, H62, Stockholm</li>
+            <li>18-21st April - Revision, E-werk, Saarbrücken</li>
+            <li>26th April - Syntax Error - Anime & Cosplay Special, H62, Stockholm</li>
+            <li>31st May - Syntax Error Season Finale - Indie Game Special, H62, Stockholm</li>
             <li>5th June - Security Fest, Elite Park Avenue Hotel, Göteborg</li>
             <li>11th June - Detectify Summer Party, Josefinas Djurgården, Stockholm</li>
             <li>26-28th June - Subkultfestivalen, Vänersborg</li>
+            <li>18-20th July - Edison 2025: The Seven Sceners, M/S Borgila, Stockholm</li>
             <li>26th July - Syntax Error Off-The-Grid, Stockholm</li>
             <li>30st August - Syntax Error Season Premiere, H62, Stockholm</li>
             <li>12th September - SEC-T Conference, Münchenbryggeriet, Stockholm</li>
             <li>27th September - Syntax Error, H62, Stockholm</li>
             <li>16th October - Moderskeppet, Birka Gotland, Stockholm</li>
-            <li>25th October - Syntax Error Halloween, Stockholm</li>
+            <li>25th October - Syntax Error - Halloween Special, Stockholm</li>
             <li>29th November - Syntax Error, H62, Stockholm</li>
-            <li>13th Deember - Syntax Error Xmas Special, H62, Stockholm</li>
+            <li>13th Deember - Syntax Error - Xmas Special, H62, Stockholm</li>
           </ul>
         </div>
       </div>
