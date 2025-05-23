@@ -31,7 +31,7 @@ export default function Home() {
             <li>16th October - Moderskeppet, Birka Gotland, Stockholm</li>
             <li>25th October - Syntax Error - Halloween Special, Stockholm</li>
             <li>29th November - Syntax Error, H62, Stockholm</li>
-            <li>13th Deember - Syntax Error - Xmas Special, H62, Stockholm</li>
+            <li>13th December - Syntax Error - Xmas Special, H62, Stockholm</li>
           </ul>
         </div>
       </div>
