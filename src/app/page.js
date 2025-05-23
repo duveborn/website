@@ -27,7 +27,7 @@ export default function Home() {
             <li>18-20th July - Edison 2025: The Seven Sceners, M/S Borgila, Stockholm</li>
             <li>26th July - Syntax Error Off-The-Grid, Stockholm</li>
             <li>30st August - Syntax Error Season Premiere, H62, Stockholm</li>
-            <li>12th September - SEC-T Conference, Münchenbryggeriet, Stockholm</li>
+            <li>11th September - SEC-T Conference, Münchenbryggeriet, Stockholm</li>
             <li>27th September - Syntax Error, H62, Stockholm</li>
             <li>16th October - Moderskeppet, Birka Gotland, Stockholm</li>
             <li>25th October - Syntax Error - Halloween Special, Stockholm</li>
