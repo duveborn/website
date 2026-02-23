@@ -2,7 +2,13 @@
   "permissions": {
     "allow": [
       "Bash(npm install:*)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "WebFetch(domain:mandagsklubben.net)",
+      "WebFetch(domain:www.syntax-error.se)",
+      "WebFetch(domain:www.sec-t.org)",
+      "WebFetch(domain:www.edisonparty.com)",
+      "WebFetch(domain:www.linkedin.com)",
+      "WebFetch(domain:www.flowersfx.com)"
     ]
   }
 }
