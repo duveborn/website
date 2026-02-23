@@ -14,48 +14,56 @@ const SLICE_DEG = 60;
 
 const slices: Slice[] = [
   {
-    label: "Link One",
+    label: "Måndagsklubben",
     href: "#",
     description: "Placeholder description for section one. Replace this with a sentence or two about what this link leads to.",
     color: "#003940",
-    startAngle: 0,
+    startAngle: 120,
   },
   {
-    label: "Link Two",
+    label: "Syntax Error",
     href: "#",
     description: "Placeholder description for section two. Replace this with a sentence or two about what this link leads to.",
     color: "#40002A",
     startAngle: 60,
   },
   {
-    label: "Link Three",
+    label: "SEC-T",
     href: "#",
     description: "Placeholder description for section three. Replace this with a sentence or two about what this link leads to.",
     color: "#230040",
-    startAngle: 120,
+    startAngle: 0,
   },
   {
-    label: "Link Four",
+    label: "Edison",
     href: "#",
     description: "Placeholder description for section four. Replace this with a sentence or two about what this link leads to.",
     color: "#400F00",
     startAngle: 180,
   },
   {
-    label: "Link Five",
+    label: "LinkedIn",
     href: "#",
     description: "Placeholder description for section five. Replace this with a sentence or two about what this link leads to.",
     color: "#0A1E40",
     startAngle: 240,
   },
   {
-    label: "Link Six",
+    label: "FlowersFX",
     href: "#",
     description: "Placeholder description for section six. Replace this with a sentence or two about what this link leads to.",
     color: "#003A1E",
     startAngle: 300,
   },
 ];
+
+/** Parse a #rrggbb hex color into an rgba() string */
+function hexToRgba(hex: string, alpha: number): string {
+  const r = parseInt(hex.slice(1, 3), 16);
+  const g = parseInt(hex.slice(3, 5), 16);
+  const b = parseInt(hex.slice(5, 7), 16);
+  return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+}
 
 /** Point on a circle measured clockwise from 12 o'clock, in % units */
 function radialPoint(angleDeg: number, r: number, cx = 50, cy = 50): string {
@@ -77,12 +85,16 @@ function sliceClipPath(startAngle: number, endAngle: number): string {
   return `polygon(${pts.join(", ")})`;
 }
 
-/** Center of the visible wedge, offset from viewport center */
-function textPos(midAngle: number, dist = 25): React.CSSProperties {
+/**
+ * Center of the visible wedge, offset from viewport center.
+ * x uses vw and y uses vh so labels scale with their own axis —
+ * on portrait phones the vertical labels push toward the top/bottom edge.
+ */
+function textPos(midAngle: number, distX = 22, distY = 32): React.CSSProperties {
   const rad = (midAngle * Math.PI) / 180;
   return {
-    left: `${(50 + Math.sin(rad) * dist).toFixed(2)}%`,
-    top:  `${(50 - Math.cos(rad) * dist).toFixed(2)}%`,
+    left: `calc(50% + ${(Math.sin(rad) * distX).toFixed(2)}vw)`,
+    top:  `calc(50% - ${(Math.cos(rad) * distY).toFixed(2)}vh)`,
   };
 }
 
@@ -101,10 +113,10 @@ export default function Home(): React.JSX.Element {
     // Shift the scale origin to the OPPOSITE side of the clicked section.
     // Scaling from there pushes the clicked section outward — looks like expansion.
     const midAngle = slices[i].startAngle + SLICE_DEG / 2;
-    const oppositeRad = ((midAngle + 180) % 360) * (Math.PI / 180);
+    const rad = midAngle * (Math.PI / 180);
     setOrigin({
-      x: 50 + Math.sin(oppositeRad) * 55,
-      y: 50 - Math.cos(oppositeRad) * 55,
+      x: 50 + Math.sin(rad) * 55,
+      y: 50 - Math.cos(rad) * 55,
     });
 
     setActive(i);
@@ -153,23 +165,9 @@ export default function Home(): React.JSX.Element {
               className="absolute inset-0 bg-transparent border-0 p-0 cursor-pointer transition-[background-color] duration-300 hover:bg-white/5 focus:outline-none focus-visible:bg-white/10"
               style={{
                 clipPath: sliceClipPath(slice.startAngle, slice.startAngle + SLICE_DEG),
+                backgroundColor: hexToRgba(slice.color, 0.5),
               }}
               onClick={() => open(i)}
-            />
-          ))}
-
-          {/* Dividing lines — 3 lines × 2 directions = 6 borders */}
-          {[0, 60, 120].map((angle) => (
-            <div
-              key={`line-${angle}`}
-              className="absolute pointer-events-none bg-white"
-              style={{
-                left: "calc(50% - 1px)",
-                top: "-50%",
-                width: "2px",
-                height: "200%",
-                transform: `rotate(${angle}deg)`,
-              }}
             />
           ))}
 
@@ -211,7 +209,7 @@ export default function Home(): React.JSX.Element {
           <h2 className="text-3xl font-bold">
             <a
               href={displayed.href}
-              className="text-white underline-offset-4 hover:underline focus:outline-none focus-visible:underline"
+              className="text-white underline underline-offset-4 focus:outline-none"
               target="_blank"
               rel="noopener noreferrer"
             >

@@ -21,8 +21,8 @@ body {
 
 /* ─── Counter-rock: text stays visually upright while the pie moves  ─── */
 @keyframes counter-rock {
-  from { transform: translate(-50%, -50%) rotate(2.5deg);  }
-  to   { transform: translate(-50%, -50%) rotate(-2.5deg); }
+  from { transform: translate(-50%, -50%) rotate(-5deg); }
+  to   { transform: translate(-50%, -50%) rotate(5deg);  }
 }
 
 .animate-rock {
