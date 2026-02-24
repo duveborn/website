@@ -16,43 +16,43 @@ const slices: Slice[] = [
   {
     label: "Måndagsklubben",
     href: "https://mandagsklubben.net",
-    description: "A weekly Monday afterwork meetup in Stockholm for geeks and friendly folks.",
-    color: "#003940",
-    startAngle: 120,
+    description: "I'm a co-founder of this weekly Monday afterwork meetup in Stockholm for geeks and friendly folks. Join us for a beverage and tell us about your day!",
+    color: "#000000",
+    startAngle: 240,
   },
   {
     label: "Syntax Error",
     href: "https://www.syntax-error.se",
-    description: "A video game nightclub in Stockholm with monthly events featuring DJs, live performers, free to play video games, and cosplay.",
-    color: "#40002A",
+    description: "I'm an organizer, DJ and board member of this video game nightclub in Stockholm with monthly events featuring DJs, live-acts, video games and cosplay. You should definitely check it out!",
+    color: "#ffffff",
     startAngle: 60,
   },
   {
     label: "SEC-T",
     href: "https://www.sec-t.org",
-    description: "An IT security conference in Stockholm hosting technical presentations, community events, and networking throughout the year.",
-    color: "#230040",
-    startAngle: 0,
+    description: "I'm a club manager at this IT security conference in Stockholm where I make sure the official party and pubs are fun. Join our free community day!",
+    color: "#000000",
+    startAngle: 120,
   },
   {
     label: "Edison",
     href: "https://www.edisonparty.com",
-    description: "A demoscene party in Stockholm aboard M/S Borgila, bringing together digital artists and coders for a weekend of creative competition.",
-    color: "#400F00",
+    description: "I'm a main organizer of this demoparty in Stockholm aboard M/S Borgila, bringing together digital artists and coders with a ton of different competitions. Start your prod today!",
+    color: "#ffffff",
     startAngle: 180,
   },
   {
-    label: "LinkedIn",
-    href: "https://www.linkedin.com/in/duveborn/",
-    description: "Creative & prototyping software developer and visual designer at Valtech, organising tech and entertainment events in Stockholm since 2007.",
-    color: "#0A1E40",
-    startAngle: 240,
+    label: "Valtech",
+    href: "https://www.valtech.com",
+    description: "I'm a senior consultant at Valtech, a global digital agency. I work on a variety of projects with various technologies. Apply today!",
+    color: "#000000",
+    startAngle: 0,
   },
   {
     label: "FlowersFX",
     href: "https://www.flowersfx.com",
-    description: "A creative collective of digital artists developing games and creative technology, known for the party game \"Eat my Shuriken and Die!\"",
-    color: "#003A1E",
+    description: "I'm a founder and developer at this creative collective of digital artists, known for the party game \"Eat my Shuriken and Die!\"",
+    color: "#ffffff",
     startAngle: 300,
   },
 ];
@@ -133,6 +133,7 @@ export default function Home(): React.JSX.Element {
 
   const displayed   = slices[active ?? lastActive.current];
   const isExpanded  = active !== null;
+  const isLight     = displayed.color === "#ffffff";
 
   return (
     <main className="relative w-screen h-screen overflow-hidden bg-black">
@@ -165,7 +166,7 @@ export default function Home(): React.JSX.Element {
               className="absolute inset-0 bg-transparent border-0 p-0 cursor-pointer transition-[background-color] duration-300 hover:bg-white/5 focus:outline-none focus-visible:bg-white/10"
               style={{
                 clipPath: sliceClipPath(slice.startAngle, slice.startAngle + SLICE_DEG),
-                backgroundColor: hexToRgba(slice.color, 0.5),
+                backgroundColor: hexToRgba(slice.color, 1),
               }}
               onClick={() => open(i)}
             />
@@ -179,8 +180,8 @@ export default function Home(): React.JSX.Element {
               style={textPos(slice.startAngle + SLICE_DEG / 2)}
             >
               <h2
-                className="text-sm font-bold text-white text-center leading-tight"
-                style={{ maxWidth: "10ch" }}
+                className="sm:text-[1.75rem] font-bold text-center leading-tight whitespace-nowrap"
+                style={{ color: slice.color === "#ffffff" ? "#000000" : "#ffffff" }}
               >
                 {slice.label}
               </h2>
@@ -209,19 +210,22 @@ export default function Home(): React.JSX.Element {
           <h2 className="text-3xl font-bold">
             <a
               href={displayed.href}
-              className="text-white underline underline-offset-4 focus:outline-none"
+              className={`inline-flex items-center gap-2 underline underline-offset-4 focus:outline-none ${isLight ? "text-black" : "text-white"}`}
               target="_blank"
               rel="noopener noreferrer"
             >
               {displayed.label}
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 opacity-70 shrink-0">
+                <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm6.75-3a.75.75 0 0 1 .75-.75h5.25a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L15.44 3H11a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
+              </svg>
             </a>
           </h2>
-          <p className="mt-4 text-white/70 text-sm leading-relaxed">
+          <p className="mt-4 text-xl leading-relaxed" style={{ color: isLight ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.7)" }}>
             {displayed.description}
           </p>
         </div>
 
-        <p className="absolute bottom-8 text-white/30 text-xs tracking-widest uppercase">
+        <p className="absolute bottom-8 text-xs tracking-widest uppercase" style={{ color: isLight ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.3)" }}>
           tap anywhere to close
         </p>
       </div>
