@@ -51,7 +51,7 @@ const slices: Slice[] = [
   {
     label: "FlowersFX",
     href: "https://www.flowersfx.com",
-    description: "I'm a founder and developer at this creative collective of digital artists, known for the party game \"Eat my Shuriken and Die!\"",
+    description: "I'm a founder and developer at this creative collective of digital artists, known for the party game \"Eat my Shuriken and Die!\". Let's build something cool!",
     color: "#ffffff",
     startAngle: 300,
   },

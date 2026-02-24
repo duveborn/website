@@ -27,8 +27,14 @@ body {
 
 .animate-rock {
   animation: rock 4s ease-in-out infinite alternate;
+  will-change: transform;
+  backface-visibility: hidden;
 }
 
 .animate-counter-rock {
   animation: counter-rock 4s ease-in-out infinite alternate;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- 6 equal slices (60° each), alternating black/white, clockwise from top -->
+  <!-- Points on circumference (r=50, center=50,50):
+       P0 top       (50, 0)
+       P1 top-right (93.301, 25)
+       P2 bot-right (93.301, 75)
+       P3 bottom    (50, 100)
+       P4 bot-left  (6.699, 75)
+       P5 top-left  (6.699, 25)  -->
+  <path d="M50,50 L50,0        A50,50 0 0,1 93.301,25 Z" fill="#000"/>
+  <path d="M50,50 L93.301,25   A50,50 0 0,1 93.301,75 Z" fill="#fff"/>
+  <path d="M50,50 L93.301,75   A50,50 0 0,1 50,100    Z" fill="#000"/>
+  <path d="M50,50 L50,100      A50,50 0 0,1 6.699,75  Z" fill="#fff"/>
+  <path d="M50,50 L6.699,75    A50,50 0 0,1 6.699,25  Z" fill="#000"/>
+  <path d="M50,50 L6.699,25    A50,50 0 0,1 50,0      Z" fill="#fff"/>
+</svg>
