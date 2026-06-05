@@ -86,21 +86,24 @@ function sliceClipPath(startAngle: number, endAngle: number): string {
 }
 
 /**
- * Center of the visible wedge, offset from viewport center.
- * x uses vw and y uses vh so labels scale with their own axis —
- * on portrait phones the vertical labels push toward the top/bottom edge.
+ * Place a label on its wedge's center ray, at radius `r` from the viewport
+ * center. Using a single vmin radius (rather than separate vw/vh distances)
+ * keeps the true bisector angle, so each label sits centered in its segment
+ * regardless of orientation, and the left/right labels clear the avatar.
  */
-function textPos(midAngle: number, distX = 22, distY = 32): React.CSSProperties {
+function textPos(midAngle: number, r = 32): React.CSSProperties {
   const rad = (midAngle * Math.PI) / 180;
   return {
-    left: `calc(50% + ${(Math.sin(rad) * distX).toFixed(2)}vw)`,
-    top:  `calc(50% - ${(Math.cos(rad) * distY).toFixed(2)}vh)`,
+    left: `calc(50% + ${(Math.sin(rad) * r).toFixed(2)}vmin)`,
+    top:  `calc(50% - ${(Math.cos(rad) * r).toFixed(2)}vmin)`,
   };
 }
 
 export default function Home(): React.JSX.Element {
   const [active, setActive]               = useState<number | null>(null);
   const [overlayVisible, setOverlayVisible] = useState(false);
+  const [contactOpen, setContactOpen]     = useState(false);
+  const [hovered, setHovered]             = useState<number | null>(null);
   // transform-origin for the expansion wrapper, starts at viewport center
   const [origin, setOrigin] = useState({ x: 50, y: 50 });
   const lastActive  = useRef<number>(0);
@@ -169,6 +172,8 @@ export default function Home(): React.JSX.Element {
                 backgroundColor: hexToRgba(slice.color, 1),
               }}
               onClick={() => open(i)}
+              onMouseEnter={() => setHovered(i)}
+              onMouseLeave={() => setHovered((h) => (h === i ? null : h))}
             />
           ))}
 
@@ -180,7 +185,7 @@ export default function Home(): React.JSX.Element {
               style={textPos(slice.startAngle + SLICE_DEG / 2)}
             >
               <h2
-                className="sm:text-[1.75rem] font-bold text-center leading-tight whitespace-nowrap"
+                className={`sm:text-[1.75rem] font-bold text-center leading-tight whitespace-nowrap transition-transform duration-300 ease-out ${hovered === i ? "scale-125" : "scale-100"}`}
                 style={{ color: slice.color === "#ffffff" ? "#000000" : "#ffffff" }}
               >
                 {slice.label}
@@ -190,11 +195,81 @@ export default function Home(): React.JSX.Element {
         </div>
       </div>
 
+      {/* ── Center avatar ───────────────────────────────────────────────
+          Sits above the intersecting wedges at the pie's center. Lives
+          outside the rocking wrapper so it stays perfectly still.
+          Clicking zooms into the contact page. */}
+      <div className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 transition-transform duration-300 ease-out hover:scale-110">
+        <button
+          aria-label="Open contact details"
+          onClick={() => setContactOpen(true)}
+          className="animate-breathe block h-24 w-24 rounded-full bg-cover bg-center ring-4 ring-white/80 shadow-[0_0_0_2px_rgba(0,0,0,0.6),0_8px_30px_rgba(0,0,0,0.5)] cursor-pointer focus:outline-none focus-visible:ring-white"
+          style={{ backgroundImage: "url(/images/me.jpg)" }}
+        />
+      </div>
+
+      {/* ── Contact page ────────────────────────────────────────────────
+          A full-screen layer revealed with a circular clip that expands
+          from the center — the avatar appears to zoom open into a page.
+          Tap anywhere to close. */}
+      <div
+        className="fixed inset-0 z-40 flex flex-col items-center justify-center bg-black text-white cursor-pointer"
+        style={{
+          clipPath: contactOpen ? "circle(150% at 50% 50%)" : "circle(0% at 50% 50%)",
+          pointerEvents: contactOpen ? "auto" : "none",
+          transition: "clip-path 0.6s cubic-bezier(0.4, 0, 0.2, 1)",
+        }}
+        onClick={() => setContactOpen(false)}
+      >
+        <div
+          className="flex flex-col items-center text-center px-10 cursor-default"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div
+            className="h-32 w-32 rounded-full bg-cover bg-center ring-4 ring-white/80"
+            style={{ backgroundImage: "url(/images/me.jpg)" }}
+          />
+          <h2 className="mt-6 text-4xl font-bold">Oskar Duveborn</h2>
+          <p className="mt-2 text-xl text-white/60">Senior consultant · Organizer · Maker · Stockholm</p>
+
+          <div className="mt-8 flex flex-col gap-3 text-lg">
+            <a
+              href="https://www.linkedin.com/in/duveborn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 underline underline-offset-4 hover:text-white/80 focus:outline-none"
+            >
+              linkedin.com/in/duveborn
+            </a>
+            <a
+              href="https://www.instagram.com/duveborn"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 underline underline-offset-4 hover:text-white/80 focus:outline-none"
+            >
+              instagram.com/duveborn
+            </a>
+            <a
+              href="https://bsky.app/profile/duveborn.bsky.social"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 underline underline-offset-4 hover:text-white/80 focus:outline-none"
+            >
+              @duveborn.bsky.social
+            </a>
+          </div>
+        </div>
+
+        <p className="absolute bottom-8 text-xs tracking-widest uppercase text-white/30">
+          tap anywhere to close
+        </p>
+      </div>
+
       {/* ── Fullscreen overlay ──────────────────────────────────────────
           Mounted permanently — content is always rendered so it stays
           visible during the 0.4 s fade-out (lastActive ref keeps it). */}
       <div
-        className="fixed inset-0 flex flex-col items-center justify-center cursor-pointer"
+        className="fixed inset-0 z-30 flex flex-col items-center justify-center cursor-pointer"
         style={{
           backgroundColor: displayed.color,
           opacity: overlayVisible ? 1 : 0,
@@ -207,22 +282,23 @@ export default function Home(): React.JSX.Element {
           className="text-center px-10 max-w-sm cursor-default"
           onClick={(e) => e.stopPropagation()}
         >
-          <h2 className="text-3xl font-bold">
-            <a
-              href={displayed.href}
-              className={`inline-flex items-center gap-2 underline underline-offset-4 focus:outline-none ${isLight ? "text-black" : "text-white"}`}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {displayed.label}
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-5 h-5 opacity-70 shrink-0">
-                <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm6.75-3a.75.75 0 0 1 .75-.75h5.25a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L15.44 3H11a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
-              </svg>
-            </a>
+          <h2 className={`text-3xl font-bold ${isLight ? "text-black" : "text-white"}`}>
+            {displayed.label}
           </h2>
           <p className="mt-4 text-xl leading-relaxed" style={{ color: isLight ? "rgba(0,0,0,0.7)" : "rgba(255,255,255,0.7)" }}>
             {displayed.description}
           </p>
+          <a
+            href={displayed.href}
+            className={`mt-6 inline-flex items-center gap-2 text-sm underline underline-offset-4 focus:outline-none ${isLight ? "text-black" : "text-white"}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {displayed.href.replace(/^https?:\/\//, "")}
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-4 h-4 opacity-70 shrink-0">
+              <path fillRule="evenodd" d="M4.25 5.5a.75.75 0 0 0-.75.75v8.5c0 .414.336.75.75.75h8.5a.75.75 0 0 0 .75-.75v-4a.75.75 0 0 1 1.5 0v4A2.25 2.25 0 0 1 12.75 17h-8.5A2.25 2.25 0 0 1 2 14.75v-8.5A2.25 2.25 0 0 1 4.25 4h5a.75.75 0 0 1 0 1.5h-5Zm6.75-3a.75.75 0 0 1 .75-.75h5.25a.75.75 0 0 1 .75.75v5.25a.75.75 0 0 1-1.5 0V4.06l-6.22 6.22a.75.75 0 1 1-1.06-1.06L15.44 3H11a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
+            </svg>
+          </a>
         </div>
 
         <p className="absolute bottom-8 text-xs tracking-widest uppercase" style={{ color: isLight ? "rgba(0,0,0,0.3)" : "rgba(255,255,255,0.3)" }}>

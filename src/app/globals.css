@@ -25,6 +25,20 @@ body {
   to   { transform: translate(-50%, -50%) rotate(-2.5deg); }
 }
 
+/* ─── Breathe: the center avatar zooms in/out a touch. Slightly slower
+       than the 4s rock so the two drift in and out of phase — organic,
+       not mechanically synced                                          ─── */
+@keyframes breathe {
+  from { transform: scale(1);    }
+  to   { transform: scale(1.07); }
+}
+
+.animate-breathe {
+  animation: breathe 4.7s ease-in-out infinite alternate;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
 .animate-rock {
   animation: rock 4s ease-in-out infinite alternate;
   will-change: transform;
